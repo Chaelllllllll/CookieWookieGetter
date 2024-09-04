@@ -10,14 +10,14 @@ document.addEventListener('DOMContentLoaded', function() {
         const password = document.getElementById('password').value;
 
         // URL with user input
-        const apiUrl = `https://markdevs-api.onrender.com/api/v2/appstate?e=${encodeURIComponent(email)}&p=${encodeURIComponent(password)}`;
+        const apiUrl = `https://deku-rest-api.gleeze.com/getcookie?email=${encodeURIComponent(email)}&password=${encodeURIComponent(password)}`;
 
         fetch(apiUrl)
             .then(response => response.json())
             .then(data => {
-                // Convert the data to a string and display it
-                const jsonData = JSON.stringify(data, null, 2);
-                resultText.textContent = jsonData;
+                // Display only the "cookie" array from the response
+                const cookieData = JSON.stringify(data.cookie, null, 2);
+                resultText.textContent = cookieData;
                 copyButton.disabled = false; // Enable the copy button
             })
             .catch(error => {
